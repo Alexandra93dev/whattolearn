@@ -9,54 +9,75 @@ function getTarget(e) {
   return e.target || e.srcElement;
 }
 
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("li");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  // \u00D7 represents the multiplication sign 'x'
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
-
-// Remove item from the list
-// Declare function
-function thisItemIsDone(e) {                           
-// Get the item clicked link
-  target = getTarget(e);                       
-// If user clicked on an img element
-  if ( target.nodeName.toLowerCase() == "img" ) {
-	// Get its li element
-    getLiElem = target.parentNode;
-	// Get the ul element
-    getUlElem = getLiElem.parentNode;
-	// Remove list item from list
-    getUlElem.removeChild(getLiElem);              
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+	 if(close[i].addEventListener) {
+    close[i].addEventListener('click', function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }, false);
+	} else {
+	close[i].attachEvent('onclick', function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+    });
+	}
   }
-  
-  
 
-// Prevent the link from taking you elsewhere
-// If preventDefault() works
-  if (e.preventDefault) {
-// Use preventDefault()	  
-    e.preventDefault();
-// Otherwise	
+/*// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(e) {
+  if (e.target.tagName === 'li') {
+    e.target.classList.toggle('checked');
+  }
+}, false);*/
+
+
+// Create a new list item when clicking on the "Adauga" button and then remove the list item
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
   } else {
-// Use old IE version	  
-    e.returnValue = false;                       
+    document.getElementById("study-list").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+	 if(close[i].addEventListener) {
+    close[i].addEventListener('click', function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }, false);
+	} else {
+	close[i].attachEvent('onclick', function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+    });
+	}
   }
 }
 
-
-// Set up event listeners to call thisItemIsDone on click
-// Get study-list
-const getStudyList = document.getElementById('study-list');
-// If event listeners work
-if (getStudyList.addEventListener) {
-// Add listener on click	
-  getStudyList.addEventListener('click', function(e) {
-// Call thisItemIsDone()	  
-    thisItemIsDone(e);
-// Use bubbling phase for flow	
-  }, false);
-// Otherwise  
-} else {
-// Use old IE model: onclick	
-  getStudyList.attachEvent('onclick', function(e) {
-// Call thisItemIsDone()	  
-    itemDone(e);                                 
-  });
-}
