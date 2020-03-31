@@ -13,8 +13,9 @@ body {
 	text-align: center;
 	width: 30%;
 	height: 30%;
-	margin-left: 30rem;
+	margin-left: 3rem;
 	margin-top: 3rem;
+	width: 70%;
 }
 
 #wrapper header {
@@ -26,13 +27,14 @@ body {
 }
 
 #wrapper header img {
-	width: 30%;
-	height: 30%;
+	width: 25%;
+	height: 25%;
 }
 
 #wrapper header h1 {
 	color: #d3bc5f;
 	font-size: 3rem;
+	text-align: center;
 }
 
 #wrapper header p {
@@ -70,35 +72,38 @@ body {
 	position: relative;
 }
 
-#elements-container ul li img {
-	position: absolute;
-	width: 10%;
-	right: 1rem;
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 12px 16px 12px 16px;
 }
 
-#elements-container ul li img:hover {
-	background: #d3bc5f;
-	border-radius: 50%;
-	border: 2px solid #333;
+.close:hover {
+  background-color: #333;
+  color: #d3bc5f;
 }
 
 /*STYLE INPUT AND BUTTON*/
 #add-item {
 	background: #d45500;
 	color: #d3bc5f;
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	font-weight: bold;
 	padding-top: 1rem;
-	padding-bottom: 1rem;
+	padding-bottom: 3rem;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	padding-left: 7.3rem;
+	padding-left: 5rem;
 	box-shadow: 5px 7px 1px #777;
 	margin-bottom: 1rem;
 }
 
 #add-item .btn1{
-	padding: 1rem;
+	position: relative;
+	padding: 0.7rem;
 	margin-top: 1rem;
 	border: none;
 	background: #777;
@@ -107,6 +112,7 @@ body {
 	font-weight: bold;
 	cursor: pointer;
 	border-radius: 10px;
+	width: 100%;
 }
 
 #add-item .btn1:hover{
@@ -115,15 +121,34 @@ body {
 }
 
 #add-item input{
+	position: relative;
 	margin-top: 1rem;
+	margin-bottom: 2rem;
 	padding: 0.7rem;
 	border: 2px solid #333;
-	background: #d3bc5f;
-	color: #d3bc5f;
+	background: #777;
+	color: #222;
 	border-radius: 10px;
-	box-shadow: inset 1px 2px 2px #333;
+	width: 100%;
 }
 
-#add-item input:hover{
-	background: #333;
+/*MEDIA QUERIES*/
+@media(max-width: 450px){
+	#wrapper header h1 {
+	display: none;
+	}
+	
+	#add-item {
+	padding-left: 1rem;
+	}
+	
+	#elements-container ul li {
+	font-size: 1.5rem;
+	}
+}
+
+@media(max-width: 300px){
+	#elements-container ul li {
+	font-size: 1.2rem;
+	}
 }
